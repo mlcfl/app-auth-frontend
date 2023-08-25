@@ -1,0 +1,10 @@
+{
+	"csr": {},
+	"ssr": {
+		"index": {
+			"entryClient": "index.html",
+			"entryServer": "src/server.ts"
+		}
+	},
+	"ssg": {}
+}
