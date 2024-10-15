@@ -2,6 +2,7 @@ import type {
 	SignUpReqSchema,
 	SignUpResSchema,
 	SignInReqSchema,
+	RestoreReqSchema,
 } from 'common/schemas';
 
 export class AuthApi {
@@ -36,6 +37,16 @@ export class AuthApi {
 		const res = await fetch('/api/refresh-token', {
 			method: 'POST',
 			headers: this.headers,
+		});
+
+		return res.status === 200;
+	}
+
+	static async restore(data: RestoreReqSchema): Promise<boolean> {
+		const res = await fetch('/api/restore', {
+			method: 'POST',
+			headers: this.headers,
+			body: JSON.stringify(data),
 		});
 
 		return res.status === 200;
