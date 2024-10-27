@@ -105,10 +105,12 @@ const onSubmit = async (e: Event) => {
 	try {
 		const {body} = await validateRequest(data, signInReqSchema);
 
-		await AuthApi.signIn(body);
-		await AuthApi.getTokens();
+		if (await AuthApi.signIn(body) && await AuthApi.getTokens()) {
+			location.replace(rootPage.value);
+			return;
+		}
 
-		location.replace(rootPage.value);
+		console.log('Oops, something went wrong');
 	} catch (e) {
 		console.log('Error is', e);
 	}
