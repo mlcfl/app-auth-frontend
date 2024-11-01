@@ -105,7 +105,7 @@ const onSubmit = async (e: Event) => {
 	try {
 		const {body} = await validateRequest(data, signInReqSchema);
 
-		if (await AuthApi.signIn(body) && await AuthApi.getTokens()) {
+		if (await AuthApi.signIn(body) && await AuthApi.getTokens(body.login)) {
 			location.replace(rootPage.value);
 			return;
 		}

@@ -33,10 +33,11 @@ export class AuthApi {
 		return res.status === 200;
 	}
 
-	static async getTokens(): Promise<boolean> {
+	static async getTokens(login: string): Promise<boolean> {
 		const res = await fetch('/api/refresh-token', {
 			method: 'POST',
 			headers: this.headers,
+			body: JSON.stringify({login}),
 		});
 
 		return res.status === 200;
